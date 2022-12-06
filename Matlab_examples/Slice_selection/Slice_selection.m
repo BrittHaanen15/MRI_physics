@@ -6,19 +6,22 @@ M(:,1) = [0 0 1]';
 M0 =1;
 
 dt=0.01;
-tvec = 1:dt:60;
+tvec = 1:dt:300;
 
 T2 = Inf;
 T1 = Inf;
 
 gammaGR = [-50:1:50]*.01;
-gammaB1x = 0.01;
 %gammaB1x = sin((tvec-250)*8)./((tvec-250)*8);
 %gammaB1x(isnan(gammaB1x))=1;
+if 1 % constant b1
+gammaB1x=tvec*0+0.01;
+else  % sinc pulse
+gammaB1x=0.022*exp(-(tvec-100).^2/40^2);
+end
 
 %figure,plot(ifftshift(abs(fft(gammaB1x))))
 figure,plot(gammaB1x)
-gammaB1x=exp(-(tvec-100).^2/40^2)
 %%
 MT = zeros(length(tvec),length(gammaGR));
 angle = zeros(length(tvec),length(gammaGR));
