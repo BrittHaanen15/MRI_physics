@@ -14,10 +14,15 @@ T1 = Inf;
 gammaGR = [-50:1:50]*.01;
 %gammaB1x = sin((tvec-250)*8)./((tvec-250)*8);
 %gammaB1x(isnan(gammaB1x))=1;
-if 1 % constant b1
-gammaB1x=tvec*0+0.01;
+if 0 % constant b1
+    gammaB1x=tvec*0+0.01;
+elseif 0  % gaussian pulse
+    gammaB1x=0.022*exp(-(tvec-100).^2/40^2);
 else  % sinc pulse
-gammaB1x=0.022*exp(-(tvec-100).^2/40^2);
+    gz = .3;
+    gamma=1;
+    d=0.6;
+    gammaB1x=gz*d*sinc(gamma*gz*(tvec-200)*d/2);
 end
 
 %figure,plot(ifftshift(abs(fft(gammaB1x))))
@@ -54,9 +59,9 @@ end
 %%
 [p x]=max(MT(:, ceil(size(MT,2)/2)),[],1)
 figure
-plot(tvec,MT(:,ceil(size(MT,2)/2)))
-xlabel('Time after RF start')
-ylabel('Transverse magnetization')
+plot(MT(:,ceil(size(MT,2)/2)),tvec)
+ylabel('Time after RF start')
+xlabel('Transverse magnetization')
 box off
 set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
 figure
