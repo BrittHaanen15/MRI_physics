@@ -1,4 +1,4 @@
-% Extended Bloch equation
+% Extended Bloch equation (visual av slice sel)
 clear
 close all
 cla
@@ -6,7 +6,7 @@ M(:,1) = [0 0 1]';
 M0 =1;
 
 dt=0.01;
-tvec = 1:dt:300;
+tvec = 1:dt:400;
 
 T2 = Inf;
 T1 = Inf;
@@ -21,7 +21,11 @@ gammaB1x=0.022*exp(-(tvec-100).^2/40^2);
 end
 
 %figure,plot(ifftshift(abs(fft(gammaB1x))))
-figure,plot(gammaB1x)
+figure,plot(tvec,gammaB1x)
+ylabel('B1 field')
+xlabel('Time')
+box off
+set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
 %%
 MT = zeros(length(tvec),length(gammaGR));
 angle = zeros(length(tvec),length(gammaGR));
@@ -53,10 +57,14 @@ figure
 plot(tvec,MT(:,ceil(size(MT,2)/2)))
 xlabel('Time after RF start')
 ylabel('Transverse magnetization')
+box off
+set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
 figure
 plot(gammaGR,MT(x,:))
 xlabel('Position (Local field strength)')
 ylabel('Transverse magnetization at 90^o flip')
+box off
+set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
 figure
 imagesc(MT)
 xlabel('Position (Local field strength)')
@@ -64,6 +72,8 @@ ylabel('Time')
 caxis([0 1])
 a = colorbar;
 a.Label.String = 'Transverse magnetization'
+box off
+set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
 figure
 imagesc(angle/pi*180)
 caxis([0 180])
@@ -71,3 +81,5 @@ a = colorbar;
 a.Label.String = 'Flip angle'
 xlabel('Position (Local field strength)')
 ylabel('Time')
+box off
+set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
