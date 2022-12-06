@@ -1,16 +1,16 @@
-%% Block function and truncation, slice selection (exercise 6.6)
+%% Block function and truncation, slice selection (exercise 6.4+5)
 %a
 clear
 Fs = 1e6; %sampling frequency (1/s)
 T = 1/Fs; % sampling period (s)
-duration = 1 %Duration of the simulation
+duration = 1; %Duration of the simulation
 N = duration*Fs; %lenght of signal
 tvec = ((-N)/2:(N-1)/2)*T; %the time vector
 
 figure(1)
 subplot(1,2,1)
 
-curve=1 %1=a+b, 2=c, 3=d
+curve=4 %1=a+b, 2=c, 3=d, 4 = gaussian
 switch curve
     case 1  
         b=3000; %3 kHz
@@ -28,6 +28,13 @@ switch curve
         s(isnan(s))=1;
         s(tvec<-1e-3) = 0;
         s(tvec>1e-3) = 0;
+    case 4 %gaussian
+        b=1e8;
+        A=1;
+        s=A*exp(-b*tvec.^2);
+        %s(isnan(s))=1;
+       % s(tvec<-1e-3) = 0;
+       % s(tvec>1e-3) = 0;
 end
 %s = s + 0.01*randn(size(tvec));
 %plot(1000*tvec(1:50),s(1:50),'.-')

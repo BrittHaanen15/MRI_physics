@@ -1,5 +1,6 @@
 %% Block function and truncation, slice selection (exercise 6.7)
 %a
+error('Wrong code')
 clear
 Fs = 1e6; %sampling frequency (1/s)
 T = 1/Fs; % sampling period (s)
@@ -10,7 +11,7 @@ tvec = ((-N)/2:(N-1)/2)*T; %the time vector
 figure(1)
 subplot(1,2,1)
 
-curve=3 %1=a+b, 2=c, 3=d
+curve=3 %1=a+b, 2=c, 3=d, 4=gaussian pulse
 switch curve
     case 1  
         b=3000; %3 kHz
@@ -25,7 +26,14 @@ switch curve
     case 3 %keep only middle 2 ms
         b=3000; %3 kHz
         c=3000; %3 kHz
-        s=sin(tvec*2*pi*c);
+        s=sin(tvec*2*pi*c)./(tvec*2*pi*b);
+        s(isnan(s))=1;
+        s(tvec<-1e-3) = 0;
+        s(tvec>1e-3) = 0;
+    case 4 %gaussian
+        b=3000; %3 kHz
+        c=3000; %3 kHz
+        s=sin(tvec*2*pi*c)./(tvec*2*pi*b);
         s(isnan(s))=1;
         s(tvec<-1e-3) = 0;
         s(tvec>1e-3) = 0;
