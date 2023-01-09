@@ -113,7 +113,7 @@ subplot(1,2,1)
 
 f1=30;
 f2=50;
-curve=5;
+curve=4;
 decay=5;
 c=0;
 blockStart = 100+c

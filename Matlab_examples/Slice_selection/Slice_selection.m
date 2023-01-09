@@ -70,6 +70,13 @@ xlabel('Position (Local field strength)')
 ylabel('Transverse magnetization at 90^o flip')
 box off
 set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
+
+figure
+plot(gammaGR,MT(end,:))
+xlabel('Position (Local field strength)')
+ylabel('Transverse magnetization after RF')
+box off
+set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
 figure
 imagesc(MT)
 xlabel('Position (Local field strength)')
