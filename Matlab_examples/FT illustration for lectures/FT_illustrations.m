@@ -1,0 +1,578 @@
+tvec = 0:0.01:3
+S=sin(2*pi*tvec);
+
+figure
+plot(S,'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+%%
+
+tvec = 0:0.01:3
+S=sin(2*pi*tvec);
+
+figure
+plot([50 50],[0 1],'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Frequency')
+ylabel('S(t)')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+%%
+tvec = 0:0.001:3
+S=sin(2*pi*tvec)+.3*sin(2*pi*7*tvec);
+
+figure
+plot(S,'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+%%
+
+tvec = 0:0.01:3
+S=sin(2*pi*tvec);
+
+figure
+plot([50 50],[0 1],'LineWidth',3)
+hold on
+plot([50 50]*5,[0 1]*.3,'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Frequency')
+ylabel('S(t)')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+
+%%
+image1 = zeros(50,250);
+for i=1:250
+    image1(:,i) = sin(2*pi*i/50);
+end
+figure
+imagesc(image1)
+colormap(bone)
+axis off
+box off
+
+%%
+image1 = zeros(50,250);
+for i=1:250
+    image1(:,i) = sin(2*pi*i/50)+.7*sin(2*pi*i/7);
+end
+figure
+imagesc(image1)
+colormap(bone)
+axis off
+box off
+
+
+%%
+image1 = meshgrid(250,250);
+[xs ys] = meshgrid(1:250);
+
+image1 = sin(2*pi*(xs+ys)/50);
+
+figure
+imagesc(image1)
+colormap(bone)
+axis off
+box off
+%%
+tvec = 0:0.01:3
+S=.1*sin(2*pi*tvec*randn(1,1)*500)+sin(2*pi*tvec/randn(1,1)*8)+randn(1,length(tvec))-0.5;
+
+figure
+plot(S,'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+%ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+
+%% Guess until you hit
+
+tvec = 0:0.01:3
+count=1;
+figure
+for i=1:5
+    S=sin(2*pi*tvec*2);
+    T =sin(2*pi*tvec*i);
+
+    subplot(5,4,count)
+    plot(S,'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    ylabel('s(t)')
+
+    count=count+1;
+    subplot(5,4,count)
+    plot(T,'LineWidth',3,'Color',[0.8500, 0.3250, 0.0980])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    %  ylabel('s(t)')
+    count=count+1;
+
+
+    subplot(5,4,count)
+    plot(S.*T,'LineWidth',3,'Color',[0.9290, 0.6940, 0.1250])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    %  ylabel('s(t)')
+    count=count+1;
+
+    subplot(5,4,count)
+    plot(cumsum(S.*T),'LineWidth',3,'Color',[0.4940, 0.1840, 0.5560])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    %ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    % ylabel('s(t)')
+    count=count+1;
+end
+
+figure
+plot(S,'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+%ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+%% Guess until you hit
+
+tvec = 0:0.01:3
+count=1;
+figure
+for i=1:5
+    S=.5*sin(2*pi*tvec*2)+.5*sin(2*pi*tvec*3);
+    T =sin(2*pi*tvec*i);
+
+    subplot(5,4,count)
+    plot(S,'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    ylabel('s(t)')
+
+    count=count+1;
+    subplot(5,4,count)
+    plot(T,'LineWidth',3,'Color',[0.8500, 0.3250, 0.0980])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    %  ylabel('s(t)')
+    count=count+1;
+
+
+    subplot(5,4,count)
+    plot(S.*T,'LineWidth',3,'Color',[0.9290, 0.6940, 0.1250])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    %  ylabel('s(t)')
+    count=count+1;
+
+    subplot(5,4,count)
+    plot(cumsum(S.*T),'LineWidth',3,'Color',[0.4940, 0.1840, 0.5560])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    %ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    % ylabel('s(t)')
+    count=count+1;
+end
+
+
+figure
+plot(S,'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+%ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+%% Guess until you hit
+
+tvec = 0:0.01:3
+count=1;
+figure
+I = 10
+for i=1:I
+    S=.2*sin(2*pi*tvec*2)+.2*sin(2*pi*tvec*3)+.4*sin(2*pi*tvec*9)+.4*sin(2*pi*tvec*7);
+    T =sin(2*pi*tvec*i);
+
+    subplot(I,4,count)
+    plot(S,'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    ylabel('s(t)')
+
+    count=count+1;
+    subplot(I,4,count)
+    plot(T,'LineWidth',3,'Color',[0.8500, 0.3250, 0.0980])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    %  ylabel('s(t)')
+    count=count+1;
+
+
+    subplot(I,4,count)
+    plot(S.*T,'LineWidth',3,'Color',[0.9290, 0.6940, 0.1250])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    %  ylabel('s(t)')
+    count=count+1;
+
+    subplot(I,4,count)
+    plot(cumsum(S.*T)/sum(S.*T),'LineWidth',3,'Color',[0.4940, 0.1840, 0.5560])
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    %ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    % ylabel('s(t)')
+    count=count+1;
+end
+
+
+figure
+plot(S,'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+%ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+
+%%
+tvec = 0:0.01:3;
+S = sin(2*pi*tvec*2);
+s = fftshift(fft(S));
+figure
+subplot(1,2,1)
+plot(S,'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+pbaspect([2 1 1])
+subplot(1,2,2)
+
+%plot(abs(s),'LineWidth',3)
+plot([50 50],[0 1],'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Frequency')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('S(f)')
+pbaspect([2 1 1])
+
+
+%%
+tvec = 0:0.01:3;
+for i=5
+   
+    switch i
+        case 1
+            S = exp(-tvec*2)
+            s = fftshift(fft(S));
+        case 2
+            
+            S = gaussmf(tvec,[.06 1.5])
+            s = fftshift(fft(S));
+        case 3
+            
+            S = [zeros(1,25) ones(1,25) zeros(1,25) ]
+            
+            s = fftshift(fft(S));
+        case 4
+            
+            S = ifftshift(ifft([zeros(1,25) ones(1,25) zeros(1,25) ]))
+            
+            s = (fft(S));
+        case 5
+            
+            S = ifftshift(ifft([zeros(1,25) ones(1,25) zeros(1,25) ]))
+            S([1:20 55:75]) = 0
+            
+            s = (fft(S));
+    end
+    figure
+    subplot(1,2,1)
+    plot(abs(S),'LineWidth',3)
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    %ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Time')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    ylabel('s(t)')
+    pbaspect([2 1 1])
+    subplot(1,2,2)
+
+    plot(abs(s),'LineWidth',3)
+    %plot([50 50],[0 1],'LineWidth',3)
+    hold on
+    plot(S*0,'--k','LineWidth',1)
+    %ylim([-1.5 1.5])
+    box off
+    set(gca,'FontSize',15)
+    xlabel('Frequency')
+    set(gca,'XTick',[])
+    set(gca,'YTick',[])
+    ylabel('S(f)')
+    pbaspect([2 1 1])
+end
+
+
+%%
+tvec = 0:0.01:3;
+S = sin(2*pi*tvec*2);
+s = fftshift(fft(S));
+figure
+subplot(1,2,1)
+plot([50 50],[0 1],'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+hold on
+plot([150 150],[0 1],'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+plot([250 250],[0 1],'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+pbaspect([2 1 1])
+subplot(1,2,2)
+
+%plot(abs(s),'LineWidth',3)
+%plot([10 10],[0 1],'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+hold on
+for ii=10:15:300
+plot([ii ii],[0 1],'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+end
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Frequency')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+pbaspect([2 1 1])
+
+%% bell
+
+tvec = 0:0.001:3;
+%S = sin(2*pi*tvec*8);
+S = exp(-tvec*2);
+S = sin(2*pi*tvec*8).*exp(-tvec*2);
+s = fftshift(fft(S));
+%s=s(1:end/2)
+figure
+subplot(1,2,1)
+plot(S,'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+hold on
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+pbaspect([2 1 1])
+subplot(1,2,2)
+
+plot(abs(s),'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+%ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Frequency')
+xlim([1400 1600])
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+pbaspect([2 1 1])
+
+%% convloution and discreteness
+
+tvec = 0:0.001:3;
+S = sin(2*pi*tvec*2);
+S([1:1501 1750:end])=0;
+s = fftshift(fft(S));
+%s=s(1:end/2)
+figure
+subplot(2,2,1)
+plot(S,'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+hold on
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+xlim([1200 2000])
+pbaspect([2 1 1])
+subplot(2,2,2)
+
+plot(abs(s),'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+%ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Frequency')
+%xlim([1400 1600])
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('S(f)')
+pbaspect([2 1 1])
+
+
+
+tvec = 0:0.001:3;
+S = sin(2*pi*tvec*2);
+S([1:1501 1750:end])=0;
+S2 = 0*S;
+n=40
+S2([1:n:end])=S([1:n:end]);
+S=S2;
+s = fftshift(fft(S));
+%s=s(1:end/2)
+subplot(2,2,3)
+plot(S,'LineWidth',3,'Color',[0, 0.4470, 0.7410])
+hold on
+plot(S*0,'--k','LineWidth',1)
+ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Time')
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('s(t)')
+pbaspect([2 1 1])
+xlim([1200 2000])
+subplot(2,2,4)
+
+plot(abs(s),'LineWidth',3)
+hold on
+plot(S*0,'--k','LineWidth',1)
+%ylim([-1.5 1.5])
+box off
+set(gca,'FontSize',15)
+xlabel('Frequency')
+%xlim([1400 1600])
+set(gca,'XTick',[])
+set(gca,'YTick',[])
+ylabel('S(f)')
+pbaspect([2 1 1])
