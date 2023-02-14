@@ -14,7 +14,7 @@ T1 = Inf;
 gammaGR = [-50:1:50]*.01;
 %gammaB1x = sin((tvec-250)*8)./((tvec-250)*8);
 %gammaB1x(isnan(gammaB1x))=1;
-if 0 % constant b1
+if 1 % constant b1
     gammaB1x=tvec*0+0.01;
 elseif 0  % gaussian pulse
     gammaB1x=0.022*exp(-(tvec-100).^2/40^2);
@@ -33,6 +33,8 @@ box off
 set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
 %%
 MT = zeros(length(tvec),length(gammaGR));
+M = zeros(3,length(tvec));
+M(:,1) = [0 0 1]';
 angle = zeros(length(tvec),length(gammaGR));
 for g = 1:length(gammaGR)
     gammGR_g = gammaGR(g);
@@ -95,3 +97,6 @@ xlabel('Position (Local field strength)')
 ylabel('Time')
 box off
 set(gca,'FontSize',14) % Creates an axes and sets its FontSize to 18
+%%
+figure
+plot(M(1,:))

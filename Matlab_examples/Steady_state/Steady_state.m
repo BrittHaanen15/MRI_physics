@@ -11,7 +11,7 @@ TR = 15; %time between excitations
 T1 = 1000;
 T2 = 100;
 
-theta = [0:360]/180*pi; %theta angle
+theta = [-180:180]/180*pi; %theta angle
 alpha = 30/180*pi; %flip angle
 
 
@@ -41,6 +41,14 @@ figure
 imagesc(1:N,theta/pi*180,MT)
 ylabel('Theta')
 xlabel('Number of TRs')
+a=colorbar
+caxis([0 1])
+colormap(hot)
+a.Label.String = 'Transverse magnetization';
+figure
+mesh(MT)
+%ylabel('Theta')
+%xlabel('Number of TRs')
 a=colorbar
 caxis([0 1])
 colormap(hot)
